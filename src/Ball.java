@@ -32,9 +32,8 @@ public class Ball {
         }
     }
 
-    public void draw(Graphics2D bufferEngine) {
-        bufferEngine.setPaint(Color.RED);
-        bufferEngine.fillOval(x, y, radius * 2, radius * 2);
+    public void draw(Canvas canvas) {
+        canvas.drawCircle(x, y, radius, Color.RED);
     }
 
     public boolean hasTouched() {
