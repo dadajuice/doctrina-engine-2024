@@ -7,11 +7,13 @@ public abstract class Game {
     private long before;
     private RenderingEngine renderingEngine;
 
+    protected abstract void initialize();
     protected abstract void update();
     protected abstract void drawOnBuffer(Graphics2D bufferEngine);
 
     public Game() {
         renderingEngine = new RenderingEngine();
+        initialize();
     }
 
     public void start() {
