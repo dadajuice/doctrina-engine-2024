@@ -61,7 +61,7 @@ public class RenderingEngine {
         frame.setTitle("Bouncing Balls");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setState(JFrame.NORMAL);
-        //frame.setUndecorated(true);
+        frame.setUndecorated(true);
     }
 
     private RenderingHints buildRenderingHints() {
