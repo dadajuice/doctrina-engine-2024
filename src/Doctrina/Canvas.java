@@ -1,3 +1,5 @@
+package Doctrina;
+
 import java.awt.*;
 
 public class Canvas {
