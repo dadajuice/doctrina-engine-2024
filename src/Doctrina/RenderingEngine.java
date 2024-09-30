@@ -12,9 +12,18 @@ public class RenderingEngine {
     private BufferedImage bufferedImage;
     private Graphics2D bufferEngine;
 
-    public RenderingEngine() {
+    private static RenderingEngine instance;
+
+    private RenderingEngine() {
         initializeFrame();
         initializePanel();
+    }
+
+    public static RenderingEngine getInstance() {
+        if (instance == null) {
+            instance = new RenderingEngine();
+        }
+        return instance;
     }
 
     public void start() {
