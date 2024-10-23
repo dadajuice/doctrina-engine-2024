@@ -28,4 +28,8 @@ public class Canvas {
         graphics.setPaint(paint);
         graphics.fillRect(x, y, width, height);
     }
+
+    public void drawImage(Image image, int x, int y) {
+        graphics.drawImage(image, x, y, null);
+    }
 }
