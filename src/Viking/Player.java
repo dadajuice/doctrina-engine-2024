@@ -22,6 +22,7 @@ public class Player extends ControllableEntity {
 
     private int currentAnimationFrame = 1;
     private int nextFrame = ANIMATION_SPEED;
+    private int animationStep = 1; // 1 or -1 (reverse) for animation cycle
 
     public Player(MovementController controller) {
         super(controller);
@@ -73,9 +74,9 @@ public class Player extends ControllableEntity {
         if (hasMoved()) {
             --nextFrame;
             if (nextFrame == 0) {
-                ++currentAnimationFrame;
-                if (currentAnimationFrame >= leftFrames.length) {
-                    currentAnimationFrame = 0;
+                currentAnimationFrame += animationStep;
+                if (currentAnimationFrame == 0 || currentAnimationFrame >= leftFrames.length - 1) {
+                    animationStep *= -1;
                 }
                 nextFrame = ANIMATION_SPEED;
             }
