@@ -13,18 +13,22 @@ public class VikingGame extends Game {
     private GamePad gamePad;
     private World world;
     private Tree tree;
+    private Tree tree2;
 
     private int soundCooldown;
 
     @Override
     protected void initialize() {
+        GameConfig.setDebugEnabled(false);
+
         gamePad = new GamePad();
         player = new Player(gamePad);
         player.teleport(250, 250);
         world = new World();
         world.load();
 
-        tree = new Tree();
+        tree = new Tree(300, 300);
+        tree2 = new Tree(600, 150);
 
         try {
             Clip clip = AudioSystem.getClip();
@@ -49,6 +53,11 @@ public class VikingGame extends Game {
         }
 
         player.update();
+        if (player.getY() < tree.getY() + 52) {
+            tree.blockadeFromTop();
+        } else {
+            tree.blockadeFromBottom();
+        }
 
         soundCooldown--;
         if (soundCooldown < 0) {
@@ -56,6 +65,7 @@ public class VikingGame extends Game {
         }
 
         if (gamePad.isFirePressed() && soundCooldown == 0) {
+//            GameConfig.setDebugEnabled(true);
             soundCooldown = 100;
             SoundEffect.MURLOC.play();
         }
@@ -74,5 +84,14 @@ public class VikingGame extends Game {
             tree.draw(canvas);
             player.draw(canvas);
         }
+
+        // TODO: Refactor to common place
+//        if (player.getY() < tree2.getY() + 52) {
+//            player.draw(canvas);
+//            tree2.draw(canvas);
+//        } else {
+//            tree2.draw(canvas);
+//            player.draw(canvas);
+//        }
     }
 }
